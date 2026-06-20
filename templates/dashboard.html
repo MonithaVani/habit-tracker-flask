@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Welcome {{ username }}</h1>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<a class="action-btn"
+   href="{{ url_for('add_habit_page') }}">
+   Add Habit
+</a>
+
+<a class="action-btn logout-btn"
+   href="{{ url_for('logout') }}">
+   Logout
+</a>
+
+
+    <br><br>
+
+    <table>
+
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Frequency</th>
+            <th>Actions</th>
+            <th>Current Streak</th>
+            <th>Longest Streak</th>
+        </tr>
+
+        {% for habit in habits %}
+
+        <tr>
+
+    <td>{{ habit.name }}</td>
+
+    <td>{{ habit.description }}</td>
+
+    <td>{{ habit.frequency }}</td>
+
+    <td>
+
+        <a href="{{ url_for(
+    'edit_habit_page',
+    habit_id=habit.id
+) }}">
+          Edit
+        </a>
+
+        |
+
+        <a
+          href="{{ url_for(
+    'delete_habit_page',
+    habit_id=habit.id
+) }}"
+          onclick="return confirm(
+          'Delete this habit?')">
+          Delete
+        </a>
+
+        <a href="{{ url_for('complete_habit',
+            habit_id=habit.id) }}">
+            Complete
+        </a>
+    </td>
+
+    <td>{{ habit.current_streak }} 🔥</td>
+
+    <td>{{ habit.longest_streak }} 🏆</td>
+
+</tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+
+
+</div>
+
+</body>
+</html>

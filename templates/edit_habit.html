@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Edit Habit</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',
+          filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Edit Habit</h2>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="habit_name"
+            value="{{ habit[1] }}"
+            required>
+
+        <textarea
+            name="description">{{ habit[2] }}</textarea>
+
+        <select name="frequency">
+
+            <option
+                value="Daily"
+                {% if habit[3] == 'Daily' %}
+                selected
+                {% endif %}>
+                Daily
+            </option>
+
+            <option
+                value="Weekly"
+                {% if habit[3] == 'Weekly' %}
+                selected
+                {% endif %}>
+                Weekly
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Update Habit
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

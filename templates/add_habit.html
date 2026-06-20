@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Add Habit</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Add New Habit</h2>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="habit_name"
+            placeholder="Habit Name"
+            required>
+
+        <textarea
+            name="description"
+            placeholder="Description">
+        </textarea>
+
+        <select name="frequency">
+
+            <option value="Daily">
+                Daily
+            </option>
+
+            <option value="Weekly">
+                Weekly
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Add Habit
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="{{ url_for('dashboard') }}">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>
